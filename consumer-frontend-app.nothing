@@ -25,10 +25,10 @@ module "elb" {
   
   # ELB attachments
   number_of_instances = "${var.number_of_instances}"
-  instances           = ["${module.ec2_instances.id}"]
+  instances           = ["${module.ec2_instance.id}"]
 }
   
-module "ec2_instances" {
+module "ec2_instance" {
   source = "app.terraform.io/aharness-org/consumer-ec2-instance/aws"
   version = "1.4"
   name                        = "${var.name}-ec2"
