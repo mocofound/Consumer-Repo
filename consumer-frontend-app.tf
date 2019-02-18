@@ -21,7 +21,7 @@ variable "name" {
 module "elb" {
   source  = "app.terraform.io/aharness-org/consumer-elb/aws"
   version = "1.9"
-  name = "${var.name}-${data.terraform_remote_state.network.environment}"
+  name = "${var.name}-${var.environment}"
   
   # ELB attachments
   number_of_instances = "${var.number_of_instances}"
@@ -29,8 +29,8 @@ module "elb" {
 }
   
 module "ec2_instance" {
-  source = "app.terraform.io/aharness-org/consumer-ec2-instance/aws"
-  version = "1.4"
-  name                        = "${var.name}-${data.terraform_remote_state.network.environment}"
+  source         = "app.terraform.io/aharness-org/consumer-ec2-instance/aws"
+  version        = "1.4"
+  name           = "${var.name}-${var.environment}"
   instance_count = "${var.number_of_instances}"
 }
